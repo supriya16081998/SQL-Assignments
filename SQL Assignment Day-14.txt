@@ -1,0 +1,278 @@
+use AdventureWorks2012
+
+select * from HumanResources.Employee
+
+select *
+from HumanResources.Employee
+where VacationHours>=50 and VacationHours<=80
+
+select * 
+from HumanResources.Employee
+where VacationHours between 40 and 80 
+
+select * 
+from HumanResources.Employee
+where JobTitle='Recruiter' or  JobTitle='Control Specialist' or JobTitle='Marketing Assistant'
+
+select * 
+from HumanResources.Employee
+where JobTitle in('Recruiter','Control Specialist','Marketing Assistant')
+
+select *
+from Sales.SalesOrderHeader
+where PurchaseOrderNumber is not null
+
+select *
+from HumanResources.Employee
+where JobTitle like 'S%'
+
+select *
+from HumanResources.Employee
+where JobTitle like 'S%'
+
+select *
+from HumanResources.Employee
+where JobTitle like '%ion'
+
+select *
+from HumanResources.Employee
+where JobTitle like '%cru%'
+
+select *
+from HumanResources.Employee
+where JobTitle like 'R%' and JobTitle like '%r'
+
+select *
+from HumanResources.Employee
+where JobTitle like 'R%r'
+
+select *
+from HumanResources.Employee
+where JobTitle like 'S___k%'
+
+select *
+from HumanResources.Employee
+where JobTitle like '[M-p]%'
+
+
+select BusinessEntityID, JobTitle
+from HumanResources.Employee
+where JobTitle like 'Re%er'
+
+select BusinessEntityID, JobTitle
+from HumanResources.Employee
+where JobTitle like '%and%'
+
+select *
+from HumanResources.Employee
+where JobTitle like 'S_n%'
+
+select *
+from HumanResources.Employee
+where JobTitle not like '[A-R]%'
+order by JobTitle
+
+select *
+from Person.Person
+where Title is not null
+order by Title
+
+select BusinessEntityID 'Employee Id', 
+Gender, 
+JobTitle as 'Designation',
+'Leave taken'=VacationHours 
+from HumanResources.Employee
+
+select distinct JobTitle
+from HumanResources.Employee
+
+select BusinessEntityID,Title + ' ' + FirstName +' ' + MiddleName +
+' ' +LastName 'Info'
+from Person.Person
+where Title is not null
+
+select BusinessEntityID 'EmployeeId',
+Concat(Title, ' ', FirstName, ' ' , MiddleName , ' ', LastName) 'Full Name'
+from Person.Person
+where Title is not null
+
+select BusinessEntityID, JobTitle,VacationHours 
+from HumanResources.Employee
+where VacationHours>=50 and VacationHours<=70
+order by VacationHours
+
+select BusinessEntityID, JobTitle,VacationHours 
+from HumanResources.Employee
+where VacationHours>=50 and VacationHours<=70
+order by 3
+
+select BusinessEntityID, JobTitle,VacationHours 'vh'
+from HumanResources.Employee
+where VacationHours>=50 and VacationHours<=70
+order by vh
+
+select sum(VacationHours) 'Total' , max(VacationHours) 'Maximum',
+min(VacationHours) 'Minimum', count(*) '# of Records',
+AVG(VacationHours) 'Average'
+from HumanResources.Employee
+
+select top 3 *
+from HumanResources.Employee
+
+select top 3 *
+from HumanResources.Employee
+order by VacationHours desc
+
+select  top 3 *
+from HumanResources.EmployeePayHistory
+order by Rate desc
+
+select  top 6 with ties  * 
+from HumanResources.EmployeePayHistory
+order by Rate desc
+
+select * 
+from HumanResources.Employee
+where JobTitle ='Tool Designer' or JobTitle='Design Engineer'
+
+select * 
+from HumanResources.Employee
+where JobTitle in ('Tool Designer','Design Engineer', 'Marketing Assistant',
+'Marketing Manager')
+order by JobTitle
+
+select LEN('nandini') , LEFT('nandini',5),
+Right('Richard',4), SUBSTRING('Richard',3,4)
+
+select BusinessEntityID 'EmployeeId', Concat(Title, ' ', FirstName, ' ' , MiddleName , ' ', LastName) 'Full Name',
+Len(Concat(Title, ' ', FirstName, ' ' , MiddleName , ' ', LastName)) 'Length'
+from Person.Person
+where Title is not null
+
+select BusinessEntityID,FirstName, LEN(FirstName) 'length'
+from Person.Person
+where Title is not Null
+
+Select REPLACE('Weather','ea','i')
+
+select REVERSE('Nandini'), REVERSE('MADAM')
+
+select upper(left(JobTitle,1)) + 
+lower(SUBSTRING(JobTitle,2,len(JobTitle)))
+, JobTitle
+from HumanResources.Employee
+
+select 'Nandini'+Space(2)+'Shams'
+
+Select *
+from HumanResources.Employee
+order by BusinessEntityID
+OFFset 15 Rows
+Fetch Next 5 Rows only
+
+select getdate()
+
+select BusinessEntityID,HireDate
+from HumanResources.Employee
+
+Select BusinessEntityID,BirthDate,Gender,HireDate,
+MONTH(HireDate), DATENAME(MM,HireDate) ,YEAR(HireDate)
+from HumanResources.Employee
+
+select Concat(DATENAME(mm,'2000-03-11'), ',' ,YEAR('2000-03-11'))
+
+select DATENAME(mm,'2000-03-11') + Convert(varchar, YEAR('2000-03-11'))
+
+Select  BusinessEntityID as EmployeeID,  
+DATENAME(mm, Hiredate) + ','+CONVERT(varchar, Year(HireDate))  as Joining 
+from HumanResources.Employee 
+
+Select BusinessEntityID,BirthDate,Gender,HireDate,
+Concat(DATENAME(mm,HireDate),',',YEAR(HireDate))
+from HumanResources.Employee
+
+select DB_ID('AdventureWorks2012')
+select OBJECT_ID('HumanResources.Employee')
+select HOST_ID()
+
+select BusinessEntityID, HireDate , DATEDIFF(yy,HireDate,getdate()) 
+'# of years'
+from HumanResources.Employee
+
+select ROUND(12.3456,2) 
+select ROUND(12.3456,-1)  
+
+select ROUND(1234.34,-2)  
+
+select CEILING(15.23)
+select ROUND(1234.34,-3)  
+
+select ROUND(1534.34,-3)  
+
+select CEILING(15.55)
+select FLOOR(15.55)
+
+select Rate, ROUND(Rate,2) 'Round',
+Floor(Rate) 'smallest integer',
+CEILING(Rate) 'Largest integer' 
+from HumanResources.EmployeePayHistory
+
+select JobTitle, count(JobTitle)
+from HumanResources.Employee
+group by JobTitle
+
+select  PayFrequency , Sum(Rate)
+from HumanResources.EmployeePayHistory
+group by PayFrequency
+
+select  PayFrequency , Sum(Rate)				
+from HumanResources.EmployeePayHistory			
+where Rate>10							
+group by PayFrequency
+
+select Title , count(Title)
+from Person.Person
+where Title is not null 
+group By Title
+having count(Title)>400
+
+select RateChangeDate , count(*)
+from HumanResources.EmployeePayHistory
+where MONTH(RateChangeDate)=01 and PayFrequency=2
+group by RateChangeDate 
+
+select Year(RateChangeDate), count(*)
+from HumanResources.EmployeePayHistory
+group by Year(RateChangeDate)
+
+select PayFrequency, sum(Rate)
+from HumanResources.EmployeePayHistory
+where Rate>10
+group by PayFrequency 
+having sum(Rate)>2000
+
+select BusinessEntityID,Rate,
+ROW_NUMBER() over (order by Rate desc) ' Sequence',  
+rank() over(order by Rate desc) 'Rank',
+DENSE_RANK() over(order by Rate desc) 'Consecutive'
+from HumanResources.EmployeePayHistory
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

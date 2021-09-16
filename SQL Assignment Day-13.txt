@@ -1,0 +1,46 @@
+select  from HumanResources.Employee
+
+select BirthDate
+from HumanResources.Employee
+
+select LoginID 'lID',BirthDate 'Birthd'
+from HumanResources.Employee
+
+select COUNT(BusinessEntityID) 'count', SUM(SickLeaveHours) 'sum'
+from HumanResources.Employee
+ 
+ select  
+ from HumanResources.Employee
+ where Gender='F'                        
+
+ select 
+from HumanResources.Employee
+where OrganizationLevel=4
+
+select 
+from HumanResources.Employee
+where SalariedFlag=5
+
+select max(SickLeaveHours)
+from HumanResources.Employee
+
+select BirthDate
+from HumanResources.Employee
+where BusinessEntityID=13
+
+select BusinessEntityID 'Employee ID' ,
+JobTitle  as 'Designation',
+BirthDate 'Date of Birth',
+'Joining Date' = HireDate
+from HumanResources.Employee
+
+select 
+from HumanResources.Employee
+where HireDate='2007-01-01'
+
+select  
+from HumanResources.Employee
+where JobTitle in('Tool Designer','Design Engineer')
+
+select Distinct JobTitle
+from HumanResources.Employee

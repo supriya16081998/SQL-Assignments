@@ -1,0 +1,51 @@
+create database mydb 
+
+use mydb
+
+create table salary
+(
+SlipNo int not null,
+Salary int not null
+)
+
+alter table salary
+alter column SlipNo varchar(10)not null
+insert salary values
+('S1001',25000),
+('S1002',27000),
+('S1003',24000)
+
+select * from salary
+
+insert salary values
+('S1004',23000)
+
+alter table salary
+add constraint pkslipno Primary key(SlipNo)
+
+create table employee
+(
+employeeno varchar(10) not null constraint pkempno Primary key,
+SlipNo varchar(10) constraint fkslipno Foreign key references salary(SlipNo) not null,
+employeename varchar(10) not null
+)
+
+insert employee values
+('E001','S1001','Supriya'),
+('E002','S1001','Sayali'),
+('E003','S1002','Harsha')
+
+select * from employee
+
+update employee
+set employeeno='E004'
+where employeename='Sayali'
+
+sp_rename 'salary.SlipNo', 'PaymentSlipNo' ,'column' 
+
+sp_rename 'salary.PaymentSlipNo','Payslip ' ,'column'
+
+select * from salary
+
+delete from salary where Salary=23000 
+
